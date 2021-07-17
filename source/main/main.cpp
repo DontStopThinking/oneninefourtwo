@@ -3,7 +3,7 @@
 
 #include "SDL.h"
 
-#include "utils/logging/log.h"
+#include "utils/logging/logutils.h"
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
@@ -11,14 +11,14 @@ const int SCREEN_HEIGHT = 480;
 int main(int argc, char **argv)
 {
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-        logSDLError(std::cout, "SDL_Init");
+        LogUtils::LogSDLError(std::cout, "SDL_Init");
         return 1;
     }
 
     SDL_Window *win = SDL_CreateWindow("helloworld", 100, 100, 640, 480, SDL_WINDOW_SHOWN);
     if (win == nullptr)
     {
-        logSDLError(std::cout, "SDL_CreateWindow");
+        LogUtils::LogSDLError(std::cout, "SDL_CreateWindow");
         SDL_Quit();
         return 1;
     }
@@ -26,7 +26,7 @@ int main(int argc, char **argv)
     SDL_Renderer *ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     if (ren == nullptr)
     {
-        logSDLError(std::cout, "SDL_CreateRenderer");
+        LogUtils::LogSDLError(std::cout, "SDL_CreateRenderer");
         SDL_Quit();
         return 1;
     }
@@ -37,7 +37,7 @@ int main(int argc, char **argv)
     {
         SDL_DestroyRenderer(ren);
         SDL_DestroyWindow(win);
-        logSDLError(std::cout, "SDL_LoadBMP");
+        LogUtils::LogSDLError(std::cout, "SDL_LoadBMP");
         SDL_Quit();
         return 1;
     }
@@ -48,7 +48,7 @@ int main(int argc, char **argv)
     {
         SDL_DestroyRenderer(ren);
         SDL_DestroyWindow(win);
-        logSDLError(std::cout, "SDL_CreateTextureFromSurface");
+        LogUtils::LogSDLError(std::cout, "SDL_CreateTextureFromSurface");
         SDL_Quit();
         return 1;
     }
