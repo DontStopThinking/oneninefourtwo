@@ -4,13 +4,15 @@
 #include "SDL.h"
 
 #include "utils/logging/logutils.h"
+#include "utils/assets/texture.h"
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
 int main(int argc, char **argv)
 {
-    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+    if (SDL_Init(SDL_INIT_VIDEO) != 0)
+    {
         LogUtils::LogSDLError(std::cout, "SDL_Init");
         return 1;
     }
